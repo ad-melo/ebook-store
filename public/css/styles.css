@@ -1,0 +1,253 @@
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/shopping-cart.css');
+
+/*//////////////////////// THIS SECTION IS FOR THE EBOOKS /////////////*/
+
+
+.search-form {
+    margin-bottom: 20px;
+}
+
+.search-results {
+    font-size: 20px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+}
+
+.search-results li {
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.search-results li a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.search-results li a:hover {
+    text-decoration: underline;
+}
+
+.ebooks-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.ebook-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.ebook-details {
+    flex-grow: 1; /* Allow the details section to grow and take remaining space */
+}
+
+.ebook-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ebook-price {
+    font-size: 16px; /* Adjust font size as needed */
+    margin-bottom: 8px; /* Add spacing between author and price */
+}
+
+.quantity-input {
+    width: 60px; /* Adjust width of quantity input */
+}
+
+
+.ebook-title {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.ebook-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.ebook-link:hover {
+    text-decoration: underline;
+}
+
+.add-to-cart-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 8px 16px;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #0056b3;
+}
+
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+}
+
+
+.gonnaBeOnTheBottom {
+    position:absolute;
+    bottom:0;
+}
+
+/*//////////////////////THIS SECTION IS FOR THE SHOPPING CART///////////////*/
+
+.shopping-cart {
+    margin: 20px auto;
+    max-width: 960px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+
+.cart-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-image {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 13vh;
+}
+
+.cart-item-image img {
+    max-width: 100px;
+    height: auto;
+}
+
+.cart-item-details {
+    overflow: hidden; /* Clear floats */
+}
+
+.cart-item-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.cart-item-description {
+    font-size: 14px;
+    color: #666;
+}
+
+.cart-item-price {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cart-item-quantity {
+    margin-bottom: 10px;
+}
+
+.cart-item-quantity input {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.cart-item-actions {
+    margin-top: 10px;
+}
+
+.update-cart-btn,
+.remove-cart-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.update-cart-btn:hover,
+.remove-cart-btn:hover {
+    background-color: #0056b3;
+}
+
+.checkout-btn {
+    background-color: #6b6;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+}
+
+.checkout-btn:hover {
+    background-color: #494;
+}
+
+.gg-shopping-cart {
+    display: block;
+    box-sizing: border-box;
+    position: relative;
+    transform: scale(var(--ggs,1));
+    width: 20px;
+    height: 21px;
+    background:
+        linear-gradient(
+            to left,currentColor 12px,
+            transparent 0)
+            no-repeat -1px 6px/18px 2px,
+        linear-gradient(
+            to left,currentColor 12px,
+            transparent 0)
+            no-repeat 6px 14px/11px 2px,
+        linear-gradient(
+            to left,currentColor 12px,
+            transparent 0)
+            no-repeat 0 2px/4px 2px,
+        radial-gradient(
+            circle,currentColor 60%,
+            transparent 40%)
+            no-repeat 12px 17px/4px 4px,
+        radial-gradient(
+            circle,currentColor 60%,
+            transparent 40%)
+            no-repeat 6px 17px/4px 4px
+}
+.gg-shopping-cart::after,
+.gg-shopping-cart::before {
+    content: "";
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    width: 2px;
+    height: 14px;
+    background: currentColor;
+    top: 2px;
+    left: 4px;
+    transform: skew(12deg)
+}
+.gg-shopping-cart::after {
+    height: 10px;
+    top: 6px;
+    left: 16px;
+    transform: skew(-12deg)
+}
