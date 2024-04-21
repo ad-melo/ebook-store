@@ -18,23 +18,20 @@
                         <div class="image-container overflow-hidden">
                             <?php
                             $ebook_id = $ebook['id'];
-                            require base_path('Http/controllers/upload/display.php');
+                            require base_path('Http/controllers/upload/display.php')
                             ?>
                         </div>
                         <div class="p-4 ebook-details">
                             <h3 class="ebook-title text-lg font-semibold mb-2">
                                 <a href="/ebook?id=<?= $ebook['id'] ?>" class="ebook-link"><?= htmlspecialchars($ebook['title']) ?></a>
                             </h3>
-
                         </div>
-                        <div id="gonnaBeOnTheBottom">
+                        <div>
                             <div class="ebook-details mx-4">
                                 <p class="ebook-author mb-2"><?= 'Autor: ' . htmlspecialchars($ebook['author']) ?></p>
                                 <p class="ebook-price"><?= 'Preço: R$' . number_format($ebook['price'], 2) ?></p>
-
                             </div>
                         </div>
-
                         <div class="ebook-actions p-4">
                             <form method="POST" action="/cart" class="flex items-center">
                                 <input type="hidden" name="ebook_id" value="<?= $ebook['id'] ?>">

@@ -1,5 +1,9 @@
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/shopping-cart.css');
 
+.element-class{
+    scrollbar-gutter: stable both-edges;
+}
+
 /*//////////////////////// THIS SECTION IS FOR THE EBOOKS /////////////*/
 
 
@@ -96,7 +100,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40vh;
+    min-height: 200px; 
+    height: auto;
 }
 
 

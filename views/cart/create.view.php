@@ -33,7 +33,7 @@
                                     <div class="cart-item-actions">
                                         <form method="POST" action="/cart/update" class="mr-2">
                                             <input type="hidden" name="ebook_id" value="<?= $item['ebook_id'] ?>">
-                                            <input type="number" id="quantity" name="quantity" min="1" value="<?= $item['quantity'] ?>" class="quantity-input mr-2 text-sm border border-gray-300 rounded-md px-2 py-1">
+                                            <input type="number" name="quantity" min="1" value="<?= $item['quantity'] ?>" class="quantity-input mr-2 text-sm border border-gray-300 rounded-md px-2 py-1">
                                             <button type="submit" class="add-to-cart-btn py-1 px-2 text-sm">Atualizar</button>
                                         </form>
                                         <form method="POST" action="/cart/remove">
