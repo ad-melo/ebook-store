@@ -2,28 +2,30 @@
 
 namespace Core;
 
-use Core\Session;
-use Core\Database;
 use Core\App;
+use Models\User;
 
 class Authenticator
 {
+    protected $userModel;
+
+    public function __construct()
+    {
+        $this->userModel = App::resolve(User::class);
+    }
+
     public function attempt($email, $password)
     {
-        $user = App::resolve(Database::class)
-            ->query('select * from users where email = :email', [
+        $user = $this->userModel->findByEmail($email);
+
+        if ($user && password_verify($password, $user['password'])) {
+            $this->login([
                 'email' => $email
-            ])->find();
+            ]);
 
-        if ($user) {
-            if (password_verify($password, $user['password'])) {
-                $this->login([
-                    'email' => $email
-                ]);
-
-                return true;
-            }
+            return true;
         }
+
         return false;
     }
 
@@ -32,7 +34,6 @@ class Authenticator
         $_SESSION['user'] = [
             'email' => $user['email']
         ];
-
         session_regenerate_id(true);
     }
 

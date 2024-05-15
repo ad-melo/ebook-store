@@ -1,13 +1,11 @@
 <?php
 
 use Core\Response;
-use Core\App;
-use Core\Database;
+use Models\Cart;
 
 function dd($value)
 {
-    echo "
-<pre>";
+    echo "<pre>";
     var_dump($value);
     echo "</pre>";
 
@@ -60,17 +58,6 @@ function old($key, $default = '')
 
 function cart_quantity()
 {
-    $db = App::resolve(Database::class);
-    $user = $db->query('SELECT * FROM users WHERE email = :email', ['email' => $_SESSION['user']['email']])->find();
-    $currentUserId = $user['id'];
-
-    $result = $db->query('SELECT SUM(quantity) AS total_quantity FROM cart WHERE user_id = :user_id', [
-        'user_id' => $currentUserId
-    ])->get();
-
-    if (!empty($result) && isset($result[0]['total_quantity'])) {
-        return (int)$result[0]['total_quantity'];
-    }
-
-    return 0;
+    $cartModel = new Cart();
+    return $cartModel->getCartQuantity($_SESSION['user']['email']);
 }

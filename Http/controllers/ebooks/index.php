@@ -1,11 +1,10 @@
 <?php
 
 use Core\App;
-use Core\Database;
+use Models\Ebook;
 
-$db = App::resolve(Database::class);
-
-$ebooks = $db->query('SELECT * FROM ebooks ORDER BY title ASC;')->get();
+$ebookModel = App::resolve(Ebook::class);
+$ebooks = $ebookModel->getAllEbooks();
 
 view("ebooks/index.view.php", [
     'heading' => 'Ebooks',

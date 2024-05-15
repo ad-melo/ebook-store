@@ -1,11 +1,8 @@
 <?php
 
-use Core\Database;
-use Core\Authenticator;
-use Core\Validator;
 use Core\App;
-
-$db = App::resolve(Database::class);
+use Core\Validator;
+use Models\User;
 
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -13,23 +10,18 @@ $password = $_POST['password'];
 $errors = [];
 
 if (!Validator::email($email)) {
-    $errors['email'] = 'Please provide a valide email address.';
+    $errors['email'] = 'Please provide a valid email address.';
 }
 
 if (!Validator::string($password, 7, 255)) {
     $errors['password'] = 'Please provide a password of at least 7 characters.';
 }
 
-if (Validator::email($email)) {
-    $errors['email'] = 'Please provide a valide email address.';
-}
+$userModel = App::resolve(User::class);
+$userEmail = $userModel->findByEmail($email);
 
-$user = $db->query('select * from users where email = :email', [
-    'email' => $email
-])->find();
-
-if ($user) {
-    $errors['email'] = 'Email already in use try logging in.';
+if ($userEmail) {
+    $errors['email'] = 'Email already in use. Try logging in.';
 }
 
 if (!empty($errors)) {
@@ -38,16 +30,7 @@ if (!empty($errors)) {
     ]);
 }
 
+$userModel->create($email, $password);
 
-if ($user) {
-    header('location: /register');
-    exit();
-} else {
-    $db->query('INSERT INTO users(email, password)  VALUES(:email, :password)', [
-        'email' => $email,
-        'password' => password_hash($password, PASSWORD_BCRYPT)
-    ]);
-
-    header('location: /login');
-    exit();
-}
+header('Location: /login');
+exit();

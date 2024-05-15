@@ -1,16 +1,14 @@
 <?php
 
 use Core\App;
-use Core\Database;
+use Models\Cart;
+use Models\User;
 
-$db = App::resolve(Database::class);
-$user = $db->query('SELECT * FROM users WHERE email = :email', ['email' => $_SESSION['user']['email']])->find();
-$currentUserId = $user['id'];
+$userModel = App::resolve(User::class);
+$currentUserId = $userModel->get_User_Id();
 
-$db->query('DELETE FROM cart WHERE ebook_id =:ebook_id AND user_id = :user_id', [
-    'ebook_id' => $_POST['ebook_id'],
-    'user_id' => $currentUserId
-]);
+$cartModel = App::resolve(Cart::class);
+$cartModel->removeFromCart($currentUserId, $_POST['ebook_id']);
 
 header('location: /cart');
 exit();

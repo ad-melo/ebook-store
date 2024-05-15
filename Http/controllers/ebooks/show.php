@@ -1,13 +1,10 @@
 <?php
 
 use Core\App;
-use Core\Database;
+use Models\Ebook;
 
-$db = App::resolve(Database::class);
-
-$ebook = $db->query('SELECT * FROM ebooks WHERE id = :id', [
-    'id' => $_GET['id']
-])->find();
+$ebookModel = App::resolve(Ebook::class);
+$ebook = $ebookModel->getEbookById($_GET['id']);
 
 view("ebooks/show.view.php", [
     'heading' => $ebook['title'],

@@ -1,16 +1,12 @@
 <?php
 
 use Core\App;
-use Core\Database;
-
-$db = App::resolve(Database::class);
+use Models\Ebook;
 
 if (isset($_GET['query'])) {
-    $searchQuery = '%' . $_GET['query'] . '%';
-    // Perform the search query
-    $results = $db->query('SELECT * FROM ebooks WHERE title LIKE :query OR author LIKE :query', ['query' => $searchQuery])->get();
+    $ebookModel = App::resolve(Ebook::class);
+    $results = $ebookModel->searchEbooks($_GET['query']);
 
-    // Display search results
     echo '<ul>';
     foreach ($results as $result) {
         echo '<li><a href="/ebook?id=' . $result['id'] . '">' . htmlspecialchars($result['title']) . '</a></li>';

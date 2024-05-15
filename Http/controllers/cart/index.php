@@ -1,17 +1,16 @@
 <?php
 
 use Core\App;
-use Core\Database;
+use Models\Cart;
+use Models\User;
 
-$db = App::resolve(Database::class);
-$user = $db->query('SELECT * FROM users WHERE email = :email', ['email' => $_SESSION['user']['email']])->find();
-$currentUserId = $user['id'];
+$userModel = App::resolve(User::class);
+$currentUserId = $userModel->get_User_Id();
 
-$cart = $db->query('SELECT * FROM cart WHERE user_id = :user_id', [
-    'user_id' => $currentUserId
-])->get();
+$cartModel = App::resolve(Cart::class);
+$userCart = $cartModel->getUserCart($currentUserId);
 
 view("cart/create.view.php", [
     'heading' => 'Carrinho de Compras',
-    'cart' => $cart
+    'cart' => $userCart
 ]);
